@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <title>Total Derivatives | Trade Widgets </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+	<link href="../assets/css/jQuery.dataTables.css" rel="stylesheet">
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../assets/css/docs.css" rel="stylesheet">
+	<link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+<div class="container">    
+	<div class="hero-unit"> 
+		<h3>Total Derivatives DTCC Trade Widgets</h3>
+	</div>
+	<div id="table_container">
+		<div>
+		<p><strong>Standard Widget</strong><a class="pull-right btn btn-small btn-success" onclick="refreshTable()">Refresh</a></p>
+		</div>
+        <div class="pull-left">
+			<select id="selectInstrument" onchange="refreshTable()">
+				<option value = "All">Instrument...</option>
+				<option  value= "IRSwap" selected >Vanilla Swaps</option>
+				<option value= "CapFloor">Caps and Floors</option>
+				<option value= "CrossCurrency">Cross Currency</option>
+				<option value= "Option">Options</option>
+				<option value= "FRA">FRAs</option>
+				<option value= "Exotic">Exotics</option>
+			</select>
+			<select id="selectCurrency"  onchange="refreshTable()">
+				<option value = "All">Currency...</option>
+				<option value= "USD" selected>USD</option>
+				<option value= "JPY">JPY</option>
+				<option value= "EUR">EUR</option>
+				<option value= "GBP">GBP</option>
+			</select>
+			<select id="selectSince" onchange="refreshTable()">
+				<option value = 1>1 hour</option>
+				<option value= 2>2 hours</option>
+				<option value= 3>3 hours</option>
+				<option value= 6 selected>6 hours</option>
+				<option value= 9>9 hours</option>
+				<option value= 12>12 hours</option> 
+				<option value= 18>18 hours</option>
+				<option value= 24>24 hours</option> 
+			</select>
+			<select id="selectMinimum" onchange="refreshTable()">
+				<option value = 5>5m</option>
+				<option value= 10 selected>10m</option>
+				<option value= 25>25m</option>
+				<option value= 50>50m</option>
+				<option value= 100>100m</option>
+				<option value= 250>250m</option> 
+				<option value= 500>500m</option>
+				<option value= 1000>1bn</option> 
+			</select>
+            </div>
+			<div class="pull-right">     
+			<label class="inline radio">autorefresh</label>
+			<label class=" inline radio"> 
+				<input type="radio" name="autorefresh" id="autorefreshOn" value=1 onChange = "setAutorefresh()" checked>On
+			</label>
+			<label class="inline radio">
+				<input type="radio" name = "autorefresh" id="autorefreshOff" onChange = "setAutorefresh()" value=0>Off
+			</label>
+			</div>
+
+				
+
+
+		
+		<table id ="table-std" class="table table-condensed table-striped">
+			<thead>
+				<tr>
+					<td>timestamp</td>
+					<td>settle</td>
+					<td>maturity</td>
+					<td>term</td>
+					<td>curr</td>
+					<td>type</td>
+					<td>price</td>
+					<td>size</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>exec</td>
+					<td>eff</td>
+					<td>end</td>
+			</thead>
+			<tbody>  
+			</tbody>
+		</table>     				   
+	</div>
+</div>
+
+
+<!--   Detail Modal -->
+<div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="detailModelLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden=true>x</button>
+		<h3 id="detailModelLabel">Trade Details</h3>
+	</div>
+	<div class="modal-body">
+		<p></p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	</div>
+</div>         
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../assets/js/fnReloadAjax.js"></script>
+	<script src="../assets/js/tradewidgets.js"></script>
+
+
+  
+
+</body></html>
