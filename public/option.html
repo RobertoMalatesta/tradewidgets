@@ -35,9 +35,9 @@
                   <div class="brand" href='#'>Trade Widgets</div>
                   <div id="mainBar" class="nav-collapse collapse">
                       <ul class="nav">
-							<li class="active"><a href="index.html">Standard</a></li>
+							<li><a href="index.html">Standard</a></li>
 							<li><a href="detailed.html">Detailed</a></li>
-							<li><a href="option.html">Option</a></li>
+							<li class="active"><a href="option.html">Option</a></li>
 							<li><a href="ticker.html">Ticker</a></li>
                       </ul>
                   </div><!--/.nav-collapse -->
@@ -47,19 +47,19 @@
 
 <div class="container">    
 
-		<h4>Trade Widget - Standard</h4>
+		<h4>Trade Widget - Options</h4>
 
-	<div id="table_container" class="tw-standard">
+	<div id="table_container" class="tw-option">
 		<div>
 		<p>&nbsp;<a class="pull-right btn btn-small btn-success" onclick="refreshTable()">Refresh</a></p>
 		</div>
         <div class="pull-left">
 			<select id="selectInstrument" onchange="refreshTable()">
 				<option value = "All">Instrument...</option>
-				<option  value= "IRSwap" selected >Vanilla Swaps</option>
+				<option  value= "IRSwap" >Vanilla Swaps</option>
 				<option value= "CapFloor">Caps and Floors</option>
 				<option value= "CrossCurrency">Cross Currency</option>
-				<option value= "Option">Options</option>
+				<option value= "Option" selected>Options</option>
 				<option value= "FRA">FRAs</option>
 				<option value= "Exotic">Exotics</option>
 			</select>
@@ -109,12 +109,15 @@
 			<thead>
 				<tr>
 					<td>timestamp</td>
+					<td>opt term</td>
+					<td>opt type</td>
 					<td>settle</td>
 					<td>maturity</td>
 					<td>term</td>
 					<td>curr</td>
 					<td>type</td>
 					<td>price</td>
+					<td>prem</td>
 					<td>size</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -152,7 +155,7 @@
 	<script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="../assets/js/fnReloadAjax.js"></script>
 	<script src="../assets/js/tradewidgets.js"></script>
-	<script src="../assets/js/tw.standard.js"></script>
+	<script src="../assets/js/tw.option.js"></script>
 
 
   

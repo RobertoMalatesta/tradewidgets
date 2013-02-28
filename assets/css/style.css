@@ -1,10 +1,6 @@
 body {
-    padding-top: 20px;
+    padding-top: 60px;
     padding-bottom: 20px;
-}
-
-.zf-green {
-    color: #68b604;
 }
 
 .btn-success {
@@ -31,10 +27,8 @@ body {
 }
 
 div.container a.brand {
-    background: url("../images/td_logo.png") no-repeat scroll 0 6px transparent;
-    background-size: 33%;
     margin-left: 0;
-    padding: 8px 20px 12px 150px;
+    padding: 8px 20px 12px 20px;
 }
 
 .navbar-inner {
@@ -42,11 +36,26 @@ background-color : #453453;
 }
 
 #table_container {
+font-size : 90%;
 padding : 10px;
-width : 720px;
 background-color : #eee;
 }
 
+#table_container.tw-standard {
+width: 720px;
+}
+
+#table_container.tw-option {
+width: 840px;
+}
+
+#table_container.tw-option {
+width: 840px;
+}
+
+#table_container.tw-ticker {
+width:760px;
+}
 #selectInstrument {
 width: 140px;
 }
@@ -68,11 +77,10 @@ table.table thead .sorting,
 	    *cursor: hand;
 	}
 
-	table.table thead .sorting { background: url('../images/sort_both.png') no-repeat center right; }
-	table.table thead .sorting_asc { background: url('../images/sort_asc.png') no-repeat center right; }
-	table.table thead .sorting_desc { background: url('../images/sort_desc.png') no-repeat center right; }
+table.table thead .sorting { background: url('../images/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('../images/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('../images/sort_desc.png') no-repeat center right; }
 
-	table.table thead .sorting_asc_disabled { background: url('../images/sort_asc_disabled.png') no-repeat center right; }
-	table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
+table.table thead .sorting_asc_disabled { background: url('../images/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
     
-table.table {font-size: 100% }
