@@ -2,7 +2,7 @@
 <html lang="en"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=8" />
     <meta charset="utf-8">
-    <title>TD | DTCC | Widgets </title>
+    <title>TD | SDR | Widgets </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,7 +10,7 @@
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
 	<link href="../assets/css/jQuery.dataTables.css" rel="stylesheet">
-    </style>
+	<link href="../assets/css/dataTables.scroller.css" rel="stylesheet">
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="../assets/css/docs.css" rel="stylesheet">
 	<link href="../assets/css/style.css" rel="stylesheet">
@@ -37,7 +37,8 @@
                       <ul class="nav">
 							<li><a href="index.html">Standard</a></li>
 							<li><a href="detailed.html">Detailed</a></li>
-							<li><a href="option.html">Option</a></li>
+							<li><a href="option.html">Options</a></li>
+							<li><a href="capfloor.html">Caps/Floors</a></li> 
 							<li class="active"><a href="ticker.html">Ticker</a></li>
                       </ul>
                   </div><!--/.nav-collapse -->
@@ -47,11 +48,54 @@
 
 <div class="container">    
 
-		<h4>Trade Widget - Rolling Trade Ticker - Last 3 Hours</h4>
+		<h4>Trade Widget - Rolling 3 hour Trade Ticker</h4>
 
 	<div id="table_container" class="tw-ticker">
-
-		<div class="pull-left">     
+		<div>
+		<p>
+			<a  onclick="tableDetails()"><i class="icon-list"></i></a>
+			<a class="pull-right btn btn-small btn-success" onclick="refreshTable()">Refresh</a>
+		</p>
+		</div>
+        <div class="pull-left hidden">
+			<select id="selectInstrument" onchange="refreshTable()">
+				<option value = "All" selected>All Derivatives</option>
+				<option  value= "IRSwap">Vanilla Swaps</option>
+				<option value= "FRA">FRAs</option>
+				<option value= "CrossCurrency">Cross Currency</option>
+				<option value = "AllOptions">All Options</option>
+				<option value= "CapFloor">Caps and Floors</option>
+				<option value= "Option">Swaptions</option>
+				<option value= "Exotic">Exotics</option>
+			</select>
+			<select id="selectCurrency"  onchange="refreshTable()">
+				<option value = "All" selected>All Currencies</option>
+				<option value= "USD">USD</option>
+				<option value= "JPY">JPY</option>
+				<option value= "EUR">EUR</option>
+				<option value= "GBP">GBP</option>
+				<option value= "AUD">AUD</option>
+				<option value= "CAD">CAD</option>
+				<option value= "SEK">SEK</option>
+				<option value= "DKK">DKK</option>
+				<option value= "NOK">NOK</option>
+			</select>
+			<select id="selectSince" onchange="refreshTable()">
+				<option value = 1>1 hour</option>
+				<option value= 2>2 hours</option>
+				<option value= 3 selected>3 hours</option>
+				<option value= 6>6 hours</option>
+				<option value= 9>9 hours</option>
+				<option value= 12>12 hours</option> 
+				<option value= 18>18 hours</option>
+				<option value= 24>24 hours</option>
+				<option value= 48>2 days</option>
+				<option value= 72>3 days</option>
+				<option value= 96>4 days</option>
+				<option value= 120>5 days</option> 
+			</select>
+        </div>
+			<div class="pull-right">     
 			<label class="inline radio">autorefresh</label>
 			<label class=" inline radio"> 
 				<input type="radio" name="autorefresh" id="autorefreshOn" value=1 onChange = "setAutorefresh()" checked>On
@@ -59,29 +103,28 @@
 			<label class="inline radio">
 				<input type="radio" name = "autorefresh" id="autorefreshOff" onChange = "setAutorefresh()" value=0>Off
 			</label>
-		 </div>
-		 <div>
-		 <a class="pull-right btn btn-small btn-success" onclick="refreshTable()">Refresh</a>
-		</div>
-		
-		<p>&nbsp;</p> 
+			</div>
+
+				
+
 
 		<table id ="tw-table" class="table table-condensed table-striped">
 			<thead>
 				<tr>
 					<td>timestamp</td>
-					<td>currency</td>
 					<td>category</td>
 					<td>type</td>
+					<td>term</td>
 					<td>settle</td>
 					<td>maturity</td>
-					<td>term</td>
 					<td>price</td>
+					<td>curr</td>
 					<td>size</td>
 					<td>&nbsp;</td>
 					<td>exec</td>
 					<td>eff</td>
 					<td>end</td>
+				</tr>
 			</thead>
 			<tbody>  
 			</tbody>
@@ -102,48 +145,28 @@
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	</div>
+</div>
+
+<!--   print Modal - nicely formatted for use in publications -->
+<div id="printModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="detailModelLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden=true>x</button>
+		<h3 id="detailModelLabel">Table Data</h3>
+	</div>
+	<div class="modal-body">
+		<p></p>
+		<table id = "printTable" class="table">
+			<tbody>
+				<tr><td>The first row<td></tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	</div>
 </div>         
 
 
-<!-- selection boxes - hidden for this widget but used to pass parameters -->
-<div class="pull-left" style="display:none">
-	<select id="selectInstrument" onchange="refreshTable()">
-		<option value = "All" selected>Instrument...</option>
-		<option  value= "IRSwap" >Vanilla Swaps</option>
-		<option value= "CapFloor">Caps and Floors</option>
-		<option value= "CrossCurrency">Cross Currency</option>
-		<option value= "Option">Options</option>
-		<option value= "FRA">FRAs</option>
-		<option value= "Exotic">Exotics</option>
-	</select>
-	<select id="selectCurrency"  onchange="refreshTable()" >
-		<option value = "All" selected>Currency...</option>
-		<option value= "USD">USD</option>
-		<option value= "JPY">JPY</option>
-		<option value= "EUR">EUR</option>
-		<option value= "GBP">GBP</option>
-	</select>
-	<select id="selectSince" onchange="refreshTable()">
-		<option value = 1>1 hour</option>
-		<option value= 2>2 hours</option>
-		<option value= 3 selected>3 hours</option>
-		<option value= 6>6 hours</option>
-		<option value= 9>9 hours</option>
-		<option value= 12>12 hours</option> 
-		<option value= 18>18 hours</option>
-		<option value= 24>24 hours</option> 
-	</select>
-	<select id="selectMinimum" onchange="refreshTable()" >
-		<option value = 0 selected>0m</option>
-		<option value= 10>10m</option>
-		<option value= 25>25m</option>
-		<option value= 50>50m</option>
-		<option value= 100>100m</option>
-		<option value= 250>250m</option> 
-		<option value= 500>500m</option>
-		<option value= 1000>1bn</option> 
-	</select>
-    </div>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -151,6 +174,7 @@
     <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="../assets/js/fnReloadAjax.js"></script>
+	<script type="text/javascript" src="../assets/js/dataTables.scroller.js"></script>
 	<script src="../assets/js/tradewidgets.js"></script>
 	<script src="../assets/js/tw.ticker.js"></script>
 

@@ -35,8 +35,8 @@
                   <div class="brand" href='#'>Trade Widgets</div>
                   <div id="mainBar" class="nav-collapse collapse">
                       <ul class="nav">
-							<li><a href="index.html">Standard</a></li>
-							<li class="active"><a href="detailed.html">Detailed</a></li>
+							<li class="active"><a href="index.html">Standard</a></li>
+							<li><a href="detailed.html">Detailed</a></li>
 							<li><a href="option.html">Options</a></li>
 							<li><a href="capfloor.html">Caps/Floors</a></li> 
 							<li><a href="ticker.html">Ticker</a></li>
@@ -48,9 +48,9 @@
 
 <div class="container">    
 
-		<h4>Trade Widget - Detailed</h4>
+		<h4>Trade Widget - Standard</h4>
 
-	<div id="table_container" class="tw-detailed">
+	<div id="table_container" class="tw-standard">
 		<div>
 		<p>
 			<a  onclick="tableDetails()"><i class="icon-list"></i></a>
@@ -59,8 +59,8 @@
 		</div>
         <div class="pull-left">
 			<select id="selectInstrument" onchange="refreshTable()">
-				<option value = "All" selected>All Derivatives</option>
-				<option  value= "IRSwap">Vanilla Swaps</option>
+				<option value = "All">All Derivatives</option>
+				<option  value= "IRSwap" selected >Vanilla Swaps</option>
 				<option value= "FRA">FRAs</option>
 				<option value= "CrossCurrency">Cross Currency</option>
 				<option value = "AllOptions">All Options</option>
@@ -69,8 +69,8 @@
 				<option value= "Exotic">Exotics</option>
 			</select>
 			<select id="selectCurrency"  onchange="refreshTable()">
-				<option value = "All" selected>All Currencies</option>
-				<option value= "USD">USD</option>
+				<option value = "All">All Currencies</option>
+				<option value= "USD" selected>USD</option>
 				<option value= "JPY">JPY</option>
 				<option value= "EUR">EUR</option>
 				<option value= "GBP">GBP</option>
@@ -80,32 +80,24 @@
 				<option value= "DKK">DKK</option>
 				<option value= "NOK">NOK</option>
 			</select>
-			<select id="selectSubtype"  onchange="refreshTable()">
-				<option value = "All">All Types</option>
-				<option value= "Inflation" selected>Inflation</option>
-				<option value= "Basis">Basis</option>
-				<option value= "OIS">OIS</option>
-				<option value= "FixedFloat">Fixed-Fixed</option>
-				<option value= "FixedFixed">Fixed-Float</option>
-			</select>
 			<select id="selectSince" onchange="refreshTable()">
 				<option value = 1>1 hour</option>
 				<option value= 2>2 hours</option>
 				<option value= 3>3 hours</option>
-				<option value= 6>6 hours</option>
+				<option value= 6 selected>6 hours</option>
 				<option value= 9>9 hours</option>
 				<option value= 12>12 hours</option> 
 				<option value= 18>18 hours</option>
 				<option value= 24>24 hours</option>
 				<option value= 48>2 days</option>
-				<option value= 72 selected>3 days</option>
+				<option value= 72>3 days</option>
 				<option value= 96>4 days</option>
 				<option value= 120>5 days</option> 
 			</select>
 			<select id="selectMinimum" onchange="refreshTable()">
-				<option value = 1 selected>1m</option>
+				<option value = 1>1m</option>
 				<option value = 5>5m</option>
-				<option value= 10>10m</option>
+				<option value= 10 selected>10m</option>
 				<option value= 25>25m</option>
 				<option value= 50>50m</option>
 				<option value= 100>100m</option>
@@ -128,24 +120,11 @@
 				
 
 
+		
 		<table id ="tw-table" class="table table-condensed table-striped">
 			<thead>
 				<tr>
-					<td>timestamp</td>
-					<td>settle</td>
-					<td>maturity</td>
-					<td>term</td>
-					<td>curr</td>
-					<td>type</td>
-					<td>price</td>
-					<td>size</td>
-					<td>from</td>
-					<td>to</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>exec</td>
-					<td>eff</td>
-					<td>end</td>
+					<td>value</td>
 				</tr>
 			</thead>
 			<tbody>  
@@ -196,9 +175,10 @@
     <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="../assets/js/fnReloadAjax.js"></script>
-	<script type="text/javascript" src="../assets/js/dataTables.scroller.js"></script>
 	<script src="../assets/js/tradewidgets.js"></script>
-	<script src="../assets/js/tw.detailed.js"></script>
+	<script src="../assets/js/tw.crossDomain.js"></script>
+	
+
 
 
   

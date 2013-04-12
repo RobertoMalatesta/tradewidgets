@@ -45,26 +45,36 @@ background-color : #eee;
 width: 720px;
 }
 
-#table_container.tw-option {
-width: 840px;
+#table_container.tw-detailed {
+width: 960px;
 }
 
 #table_container.tw-option {
-width: 840px;
+width: 960px;
 }
 
 #table_container.tw-ticker {
 width:760px;
 }
-#selectInstrument {
+#selectInstrument, #selectSubtype {
 width: 140px;
 }
 
-#selectCurrency, #selectSince, #selectMinimum{
-width : 100px;
+#selectCurrency{
+width : 130px;
+}
+
+#selectSince, #selectMinimum {
+width: 90px;
+}
+
+#detailModal, #printModal {
+width : 720px;
 }
 
 
+a.trade-info {
+}
 
 /* dataTable */
 
